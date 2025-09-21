@@ -17,7 +17,7 @@ export interface CommunityPost {
   profiles?: {
     full_name: string;
     level: string;
-  };
+  } | null;
 }
 
 export interface CommunityComment {
@@ -30,7 +30,7 @@ export interface CommunityComment {
   profiles?: {
     full_name: string;
     level: string;
-  };
+  } | null;
 }
 
 export interface CommunityEvent {
@@ -49,7 +49,7 @@ export interface CommunityEvent {
   profiles?: {
     full_name: string;
     level: string;
-  };
+  } | null;
 }
 
 export const useCommunityPosts = (category?: string) => {
@@ -77,7 +77,7 @@ export const useCommunityPosts = (category?: string) => {
 
       const { data, error } = await query;
       if (error) throw error;
-      return data as CommunityPost[];
+      return data as CommunityPost[] || [];
     },
     enabled: !!user?.id
   });
@@ -104,7 +104,7 @@ export const useCommunityEvents = () => {
         .order('event_date', { ascending: true });
 
       if (error) throw error;
-      return data as CommunityEvent[];
+      return data as CommunityEvent[] || [];
     },
     enabled: !!user?.id
   });
@@ -132,7 +132,7 @@ export const usePostComments = (postId: string) => {
         .order('created_at', { ascending: true });
 
       if (error) throw error;
-      return data as CommunityComment[];
+      return data as CommunityComment[] || [];
     },
     enabled: !!user?.id && !!postId
   });

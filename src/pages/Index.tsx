@@ -10,6 +10,7 @@ import { ReportIssue } from '@/components/features/ReportIssue';
 import { EcoStore } from '@/components/features/EcoStore';
 import { EmergencyPickup } from '@/components/features/EmergencyPickup';
 import { LiveTracking } from '@/components/features/LiveTracking';
+import { Community } from '@/components/features/Community';
 import { LoginForm } from '@/components/auth/LoginForm';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -43,6 +44,8 @@ const Index = () => {
           return <LiveTracking />;
         case 'emergency':
           return <EmergencyPickup />;
+        case 'community':
+          return <Community />;
         case 'ai-assistant':
           return <AIAssistant />;
       case 'analytics':
