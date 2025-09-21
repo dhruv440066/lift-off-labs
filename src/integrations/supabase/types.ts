@@ -14,13 +14,333 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      points_transactions: {
+        Row: {
+          created_at: string | null
+          description: string
+          id: string
+          metadata: Json | null
+          pickup_id: string | null
+          points: number
+          transaction_type: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          description: string
+          id?: string
+          metadata?: Json | null
+          pickup_id?: string | null
+          points: number
+          transaction_type: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string | null
+          description?: string
+          id?: string
+          metadata?: Json | null
+          pickup_id?: string | null
+          points?: number
+          transaction_type?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "points_transactions_pickup_id_fkey"
+            columns: ["pickup_id"]
+            isOneToOne: false
+            referencedRelation: "waste_pickups"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          address: string | null
+          avatar_url: string | null
+          city: string | null
+          created_at: string | null
+          email: string
+          full_name: string
+          id: string
+          level: string | null
+          phone: string | null
+          pincode: string | null
+          state: string | null
+          total_points: number | null
+          updated_at: string | null
+          user_id: string
+          user_type: string | null
+          verification_status: string | null
+        }
+        Insert: {
+          address?: string | null
+          avatar_url?: string | null
+          city?: string | null
+          created_at?: string | null
+          email: string
+          full_name: string
+          id?: string
+          level?: string | null
+          phone?: string | null
+          pincode?: string | null
+          state?: string | null
+          total_points?: number | null
+          updated_at?: string | null
+          user_id: string
+          user_type?: string | null
+          verification_status?: string | null
+        }
+        Update: {
+          address?: string | null
+          avatar_url?: string | null
+          city?: string | null
+          created_at?: string | null
+          email?: string
+          full_name?: string
+          id?: string
+          level?: string | null
+          phone?: string | null
+          pincode?: string | null
+          state?: string | null
+          total_points?: number | null
+          updated_at?: string | null
+          user_id?: string
+          user_type?: string | null
+          verification_status?: string | null
+        }
+        Relationships: []
+      }
+      recycling_centers: {
+        Row: {
+          address: string
+          capacity_tons: number | null
+          city: string
+          created_at: string | null
+          current_load_tons: number | null
+          email: string | null
+          id: string
+          is_active: boolean | null
+          latitude: number | null
+          longitude: number | null
+          name: string
+          operating_hours: Json | null
+          phone: string | null
+          pincode: string
+          rating: number | null
+          state: string
+          updated_at: string | null
+          waste_types_accepted: string[] | null
+        }
+        Insert: {
+          address: string
+          capacity_tons?: number | null
+          city: string
+          created_at?: string | null
+          current_load_tons?: number | null
+          email?: string | null
+          id?: string
+          is_active?: boolean | null
+          latitude?: number | null
+          longitude?: number | null
+          name: string
+          operating_hours?: Json | null
+          phone?: string | null
+          pincode: string
+          rating?: number | null
+          state: string
+          updated_at?: string | null
+          waste_types_accepted?: string[] | null
+        }
+        Update: {
+          address?: string
+          capacity_tons?: number | null
+          city?: string
+          created_at?: string | null
+          current_load_tons?: number | null
+          email?: string | null
+          id?: string
+          is_active?: boolean | null
+          latitude?: number | null
+          longitude?: number | null
+          name?: string
+          operating_hours?: Json | null
+          phone?: string | null
+          pincode?: string
+          rating?: number | null
+          state?: string
+          updated_at?: string | null
+          waste_types_accepted?: string[] | null
+        }
+        Relationships: []
+      }
+      rewards: {
+        Row: {
+          created_at: string | null
+          current_redemptions: number | null
+          description: string | null
+          expiry_days: number | null
+          id: string
+          image_url: string | null
+          is_active: boolean | null
+          max_redemptions: number | null
+          points_required: number
+          reward_type: string
+          terms_conditions: string | null
+          title: string
+          updated_at: string | null
+          value_amount: number | null
+          vendor_name: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          current_redemptions?: number | null
+          description?: string | null
+          expiry_days?: number | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          max_redemptions?: number | null
+          points_required: number
+          reward_type: string
+          terms_conditions?: string | null
+          title: string
+          updated_at?: string | null
+          value_amount?: number | null
+          vendor_name?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          current_redemptions?: number | null
+          description?: string | null
+          expiry_days?: number | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean | null
+          max_redemptions?: number | null
+          points_required?: number
+          reward_type?: string
+          terms_conditions?: string | null
+          title?: string
+          updated_at?: string | null
+          value_amount?: number | null
+          vendor_name?: string | null
+        }
+        Relationships: []
+      }
+      user_rewards: {
+        Row: {
+          expiry_date: string | null
+          id: string
+          redeemed_at: string | null
+          redemption_code: string | null
+          reward_id: string
+          status: string | null
+          user_id: string
+        }
+        Insert: {
+          expiry_date?: string | null
+          id?: string
+          redeemed_at?: string | null
+          redemption_code?: string | null
+          reward_id: string
+          status?: string | null
+          user_id: string
+        }
+        Update: {
+          expiry_date?: string | null
+          id?: string
+          redeemed_at?: string | null
+          redemption_code?: string | null
+          reward_id?: string
+          status?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_rewards_reward_id_fkey"
+            columns: ["reward_id"]
+            isOneToOne: false
+            referencedRelation: "rewards"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      waste_pickups: {
+        Row: {
+          actual_weight_kg: number | null
+          center_id: string | null
+          created_at: string | null
+          driver_id: string | null
+          driver_notes: string | null
+          estimated_weight_kg: number | null
+          id: string
+          pickup_address: string
+          pickup_date: string
+          pickup_time: string
+          points_awarded: number | null
+          special_instructions: string | null
+          status: string | null
+          updated_at: string | null
+          user_id: string
+          waste_type: string
+        }
+        Insert: {
+          actual_weight_kg?: number | null
+          center_id?: string | null
+          created_at?: string | null
+          driver_id?: string | null
+          driver_notes?: string | null
+          estimated_weight_kg?: number | null
+          id?: string
+          pickup_address: string
+          pickup_date: string
+          pickup_time: string
+          points_awarded?: number | null
+          special_instructions?: string | null
+          status?: string | null
+          updated_at?: string | null
+          user_id: string
+          waste_type: string
+        }
+        Update: {
+          actual_weight_kg?: number | null
+          center_id?: string | null
+          created_at?: string | null
+          driver_id?: string | null
+          driver_notes?: string | null
+          estimated_weight_kg?: number | null
+          id?: string
+          pickup_address?: string
+          pickup_date?: string
+          pickup_time?: string
+          points_awarded?: number | null
+          special_instructions?: string | null
+          status?: string | null
+          updated_at?: string | null
+          user_id?: string
+          waste_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "waste_pickups_center_id_fkey"
+            columns: ["center_id"]
+            isOneToOne: false
+            referencedRelation: "recycling_centers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      calculate_points_for_waste: {
+        Args: { waste_type: string; weight_kg: number }
+        Returns: number
+      }
     }
     Enums: {
       [_ in never]: never
