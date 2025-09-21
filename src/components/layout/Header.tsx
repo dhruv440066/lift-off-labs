@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/enhanced-button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { useAuth } from '@/contexts/AuthContext';
 import { 
   Recycle, 
   Bell, 
@@ -32,6 +33,7 @@ export const Header: React.FC<HeaderProps> = ({
   notifications = 3,
   messages = 5
 }) => {
+  const { signOut } = useAuth();
   const [isDark, setIsDark] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -140,7 +142,7 @@ export const Header: React.FC<HeaderProps> = ({
                       Billing
                     </Button>
                     <hr className="my-1" />
-                    <Button variant="ghost" className="w-full justify-start gap-3 text-error hover:text-error">
+                    <Button variant="ghost" className="w-full justify-start gap-3 text-error hover:text-error" onClick={signOut}>
                       <LogOut className="w-4 h-4" />
                       Logout
                     </Button>

@@ -31,24 +31,24 @@ const navigationItems = [
   {
     section: 'MAIN',
     items: [
-      { id: 'overview', icon: Home, label: 'Dashboard', badge: '5' },
+      { id: 'overview', icon: Home, label: 'Dashboard' },
       { id: 'ai-assistant', icon: Bot, label: 'AI Assistant', badge: 'NEW', badgeType: 'new' },
       { id: 'analytics', icon: BarChart3, label: 'Analytics' },
     ]
   },
   {
-    section: 'SERVICES',
+    section: 'WASTE MANAGEMENT',
     items: [
-      { id: 'training', icon: GraduationCap, label: 'Training Hub' },
-      { id: 'tracking', icon: Truck, label: 'Live Tracking' },
-      { id: 'shopping', icon: ShoppingCart, label: 'EcoStore' },
-      { id: 'reporting', icon: Camera, label: 'Report Issues' },
+      { id: 'schedule', icon: Truck, label: 'Schedule Pickup' },
+      { id: 'pickups', icon: Camera, label: 'My Pickups' },
+      { id: 'tracking', icon: GraduationCap, label: 'Live Tracking' },
+      { id: 'reporting', icon: ShoppingCart, label: 'Report Issues' },
     ]
   },
   {
     section: 'REWARDS & SOCIAL',
     items: [
-      { id: 'rewards', icon: Trophy, label: 'Rewards' },
+      { id: 'rewards', icon: Trophy, label: 'Rewards Center' },
       { id: 'community', icon: Users, label: 'Community' },
     ]
   },
