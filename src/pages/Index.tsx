@@ -9,6 +9,7 @@ import RewardsCenter from '@/components/features/RewardsCenter';
 import { ReportIssue } from '@/components/features/ReportIssue';
 import { EcoStore } from '@/components/features/EcoStore';
 import { EmergencyPickup } from '@/components/features/EmergencyPickup';
+import { LiveTracking } from '@/components/features/LiveTracking';
 import { LoginForm } from '@/components/auth/LoginForm';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -38,6 +39,8 @@ const Index = () => {
           return <ReportIssue />;
         case 'shopping':
           return <EcoStore />;
+        case 'tracking':
+          return <LiveTracking />;
         case 'emergency':
           return <EmergencyPickup />;
         case 'ai-assistant':
