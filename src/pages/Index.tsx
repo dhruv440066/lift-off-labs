@@ -3,22 +3,19 @@ import { Header } from '@/components/layout/Header';
 import { Sidebar } from '@/components/layout/Sidebar';
 import { DashboardOverview } from '@/components/dashboard/DashboardOverview';
 import { AIAssistant } from '@/components/sections/AIAssistant';
+import SchedulePickup from '@/components/features/SchedulePickup';
+import MyPickups from '@/components/features/MyPickups';
+import RewardsCenter from '@/components/features/RewardsCenter';
 import { LoginForm } from '@/components/auth/LoginForm';
 import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/enhanced-button';
 import { Badge } from '@/components/ui/badge';
+import { useAuth } from '@/contexts/AuthContext';
+import { useProfile } from '@/hooks/useProfile';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('overview');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // Mock user data
-  const user = {
-    name: "Priya Sharma",
-    initials: "PS",
-    level: "Eco Warrior",
-    status: 'online' as const
-  };
+  const { user, loading } = useAuth();
+  const { profile } = useProfile();
 
   const handleSectionChange = (section: string) => {
     setActiveSection(section);
@@ -28,6 +25,12 @@ const Index = () => {
     switch (activeSection) {
       case 'overview':
         return <DashboardOverview onSectionChange={handleSectionChange} />;
+      case 'schedule':
+        return <SchedulePickup />;
+      case 'pickups':
+        return <MyPickups />;
+      case 'rewards':
+        return <RewardsCenter />;
       case 'ai-assistant':
         return <AIAssistant />;
       case 'analytics':
@@ -78,18 +81,36 @@ const Index = () => {
     }
   };
 
-  if (!isLoggedIn) {
-    return <LoginForm onLogin={() => setIsLoggedIn(true)} />;
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-muted/30 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
   }
+
+  if (!user) {
+    return <LoginForm />;
+  }
+
+  const userForHeader = {
+    name: profile?.full_name || "User",
+    initials: profile?.full_name?.split(' ').map(n => n[0]).join('') || "U",
+    level: profile?.level || "Eco Starter",
+    status: 'online' as const
+  };
 
   return (
     <div className="min-h-screen bg-muted/30">
-      <Header user={user} notifications={3} messages={5} />
+      <Header user={userForHeader} notifications={3} messages={5} />
       <div className="flex">
         <Sidebar 
           activeSection={activeSection} 
           onSectionChange={handleSectionChange}
-          user={user}
+          user={userForHeader}
         />
         <main className="flex-1 p-6 overflow-y-auto">
           {renderContent()}

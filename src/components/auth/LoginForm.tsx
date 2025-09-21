@@ -5,42 +5,95 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Recycle, Mail, Lock, Eye, EyeOff, User, Phone, Calendar } from 'lucide-react';
+import { Recycle, Mail, Lock, Eye, EyeOff, User, Phone } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
+import { toast } from '@/hooks/use-toast';
 
-interface LoginFormProps {
-  onLogin: () => void;
-}
-
-export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
+export const LoginForm: React.FC = () => {
+  const { signIn, signUp } = useAuth();
   const [isRegister, setIsRegister] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     name: '',
     phone: '',
-    dob: '',
-    address: '',
-    city: '',
-    pincode: '',
-    userType: 'citizen'
+    userType: 'individual'
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // For demo purposes, just call onLogin
-    onLogin();
+    
+    if (!formData.email || !formData.password) {
+      toast({
+        title: "Error",
+        description: "Please fill in all required fields",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    if (isRegister && !formData.name) {
+      toast({
+        title: "Error", 
+        description: "Please enter your full name",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      if (isRegister) {
+        const { error } = await signUp(formData.email, formData.password, formData.name);
+        if (error) {
+          toast({
+            title: "Error",
+            description: error.message,
+            variant: "destructive"
+          });
+        } else {
+          toast({
+            title: "Account created!",
+            description: "Please check your email to verify your account."
+          });
+        }
+      } else {
+        const { error } = await signIn(formData.email, formData.password);
+        if (error) {
+          toast({
+            title: "Error",
+            description: error.message,
+            variant: "destructive"
+          });
+        } else {
+          toast({
+            title: "Welcome back!",
+            description: "Successfully signed in."
+          });
+        }
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive"
+      });
+    }
+
+    setLoading(false);
   };
 
   const userTypes = [
-    { value: 'citizen', label: '🏠 Citizen', desc: 'Individual waste management' },
-    { value: 'worker', label: '🚛 Waste Worker', desc: 'Collection & processing' },
-    { value: 'green-champion', label: '🌟 Green Champion', desc: 'Community leader' },
-    { value: 'business', label: '🏢 Business User', desc: 'Commercial waste management' }
+    { value: 'individual', label: '🏠 Individual', desc: 'Personal waste management' },
+    { value: 'business', label: '🏢 Business', desc: 'Commercial waste management' },
+    { value: 'organization', label: '🌟 Organization', desc: 'Community leader' }
   ];
 
   return (
@@ -71,7 +124,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           <form onSubmit={handleSubmit} className="space-y-4">
             {isRegister && (
               <>
-                {/* Name and Email Row */}
+                {/* Name and Phone Row */}
                 <div className="grid grid-cols-2 gap-3">
                   <div className="space-y-2">
                     <Label htmlFor="name">Full Name</Label>
@@ -101,7 +154,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
                         className="pl-10"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        required
                       />
                     </div>
                   </div>
@@ -110,7 +162,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
                 {/* User Type Selection */}
                 <div className="space-y-2">
                   <Label>User Type</Label>
-                  <div className="grid grid-cols-2 gap-2">
+                  <div className="grid grid-cols-1 gap-2">
                     {userTypes.map((type) => (
                       <label
                         key={type.value}
@@ -200,8 +252,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
               </div>
             )}
 
-            <Button type="submit" variant="eco" className="w-full">
-              {isRegister ? 'Create Account' : 'Sign In'}
+            <Button type="submit" variant="eco" className="w-full" disabled={loading}>
+              {loading ? (isRegister ? 'Creating Account...' : 'Signing In...') : (isRegister ? 'Create Account' : 'Sign In')}
             </Button>
           </form>
 
@@ -210,6 +262,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
               variant="ghost"
               onClick={() => setIsRegister(!isRegister)}
               className="text-primary"
+              disabled={loading}
             >
               {isRegister 
                 ? 'Already have an account? Sign in' 
@@ -220,7 +273,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
 
           <div className="text-center">
             <p className="text-xs text-muted-foreground">
-              Connect Supabase for full authentication features
+              Complete waste management solution with real-time tracking
             </p>
           </div>
         </CardContent>
