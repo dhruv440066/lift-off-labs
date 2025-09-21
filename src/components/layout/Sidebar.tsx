@@ -14,7 +14,8 @@ import {
   Trophy,
   Users,
   Newspaper,
-  Star
+  Star,
+  AlertTriangle
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -40,15 +41,17 @@ const navigationItems = [
     section: 'WASTE MANAGEMENT',
     items: [
       { id: 'schedule', icon: Truck, label: 'Schedule Pickup' },
+      { id: 'emergency', icon: AlertTriangle, label: 'Emergency Pickup', badge: 'URGENT', badgeType: 'urgent' },
       { id: 'pickups', icon: Camera, label: 'My Pickups' },
       { id: 'tracking', icon: GraduationCap, label: 'Live Tracking' },
       { id: 'reporting', icon: ShoppingCart, label: 'Report Issues' },
     ]
   },
   {
-    section: 'REWARDS & SOCIAL',
+  section: 'REWARDS & SOCIAL',
     items: [
       { id: 'rewards', icon: Trophy, label: 'Rewards Center' },
+      { id: 'shopping', icon: ShoppingCart, label: 'EcoStore' },
       { id: 'community', icon: Users, label: 'Community' },
     ]
   },
@@ -119,7 +122,9 @@ export const Sidebar: React.FC<SidebarProps> = ({
                         className={cn(
                           "ml-auto text-xs px-2 py-1",
                           item.badgeType === 'new' 
-                            ? "bg-success text-white animate-pulse" 
+                            ? "bg-success text-white animate-pulse"
+                            : item.badgeType === 'urgent'
+                            ? "bg-red-500 text-white animate-pulse"
                             : "bg-accent text-white"
                         )}
                       >

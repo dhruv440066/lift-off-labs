@@ -6,6 +6,9 @@ import { AIAssistant } from '@/components/sections/AIAssistant';
 import SchedulePickup from '@/components/features/SchedulePickup';
 import MyPickups from '@/components/features/MyPickups';
 import RewardsCenter from '@/components/features/RewardsCenter';
+import { ReportIssue } from '@/components/features/ReportIssue';
+import { EcoStore } from '@/components/features/EcoStore';
+import { EmergencyPickup } from '@/components/features/EmergencyPickup';
 import { LoginForm } from '@/components/auth/LoginForm';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -25,14 +28,20 @@ const Index = () => {
     switch (activeSection) {
       case 'overview':
         return <DashboardOverview onSectionChange={handleSectionChange} />;
-      case 'schedule':
-        return <SchedulePickup />;
-      case 'pickups':
-        return <MyPickups />;
-      case 'rewards':
-        return <RewardsCenter />;
-      case 'ai-assistant':
-        return <AIAssistant />;
+        case 'schedule':
+          return <SchedulePickup />;
+        case 'pickups':
+          return <MyPickups />;
+        case 'rewards':
+          return <RewardsCenter />;
+        case 'reporting':
+          return <ReportIssue />;
+        case 'shopping':
+          return <EcoStore />;
+        case 'emergency':
+          return <EmergencyPickup />;
+        case 'ai-assistant':
+          return <AIAssistant />;
       case 'analytics':
         return (
           <div className="space-y-6 animate-fadeInScale">

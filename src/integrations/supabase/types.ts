@@ -14,6 +14,87 @@ export type Database = {
   }
   public: {
     Tables: {
+      center_rewards: {
+        Row: {
+          awarded_at: string
+          bonus_points: number
+          center_id: string
+          id: string
+          pickup_id: string | null
+          reason: string
+          user_id: string
+        }
+        Insert: {
+          awarded_at?: string
+          bonus_points: number
+          center_id: string
+          id?: string
+          pickup_id?: string | null
+          reason: string
+          user_id: string
+        }
+        Update: {
+          awarded_at?: string
+          bonus_points?: number
+          center_id?: string
+          id?: string
+          pickup_id?: string | null
+          reason?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      issue_reports: {
+        Row: {
+          admin_notes: string | null
+          attachments: Json | null
+          center_id: string | null
+          created_at: string
+          description: string
+          id: string
+          issue_type: string
+          pickup_id: string | null
+          priority: string
+          resolved_at: string | null
+          status: string
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          admin_notes?: string | null
+          attachments?: Json | null
+          center_id?: string | null
+          created_at?: string
+          description: string
+          id?: string
+          issue_type: string
+          pickup_id?: string | null
+          priority?: string
+          resolved_at?: string | null
+          status?: string
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          admin_notes?: string | null
+          attachments?: Json | null
+          center_id?: string | null
+          created_at?: string
+          description?: string
+          id?: string
+          issue_type?: string
+          pickup_id?: string | null
+          priority?: string
+          resolved_at?: string | null
+          status?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       points_transactions: {
         Row: {
           created_at: string | null
@@ -267,6 +348,99 @@ export type Database = {
           },
         ]
       }
+      utilities: {
+        Row: {
+          availability_status: string
+          category: string
+          created_at: string
+          description: string | null
+          id: string
+          image_url: string | null
+          is_active: boolean
+          name: string
+          price_currency: number | null
+          price_points: number
+          specifications: Json | null
+          updated_at: string
+          vendor_name: string | null
+        }
+        Insert: {
+          availability_status?: string
+          category: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          name: string
+          price_currency?: number | null
+          price_points: number
+          specifications?: Json | null
+          updated_at?: string
+          vendor_name?: string | null
+        }
+        Update: {
+          availability_status?: string
+          category?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          name?: string
+          price_currency?: number | null
+          price_points?: number
+          specifications?: Json | null
+          updated_at?: string
+          vendor_name?: string | null
+        }
+        Relationships: []
+      }
+      utility_purchases: {
+        Row: {
+          created_at: string
+          currency_spent: number | null
+          delivery_address: string
+          delivery_date: string | null
+          delivery_status: string
+          id: string
+          points_spent: number
+          quantity: number
+          tracking_number: string | null
+          updated_at: string
+          user_id: string
+          utility_id: string
+        }
+        Insert: {
+          created_at?: string
+          currency_spent?: number | null
+          delivery_address: string
+          delivery_date?: string | null
+          delivery_status?: string
+          id?: string
+          points_spent: number
+          quantity?: number
+          tracking_number?: string | null
+          updated_at?: string
+          user_id: string
+          utility_id: string
+        }
+        Update: {
+          created_at?: string
+          currency_spent?: number | null
+          delivery_address?: string
+          delivery_date?: string | null
+          delivery_status?: string
+          id?: string
+          points_spent?: number
+          quantity?: number
+          tracking_number?: string | null
+          updated_at?: string
+          user_id?: string
+          utility_id?: string
+        }
+        Relationships: []
+      }
       waste_pickups: {
         Row: {
           actual_weight_kg: number | null
@@ -274,8 +448,10 @@ export type Database = {
           created_at: string | null
           driver_id: string | null
           driver_notes: string | null
+          emergency_fee_points: number | null
           estimated_weight_kg: number | null
           id: string
+          is_emergency: boolean
           pickup_address: string
           pickup_date: string
           pickup_time: string
@@ -292,8 +468,10 @@ export type Database = {
           created_at?: string | null
           driver_id?: string | null
           driver_notes?: string | null
+          emergency_fee_points?: number | null
           estimated_weight_kg?: number | null
           id?: string
+          is_emergency?: boolean
           pickup_address: string
           pickup_date: string
           pickup_time: string
@@ -310,8 +488,10 @@ export type Database = {
           created_at?: string | null
           driver_id?: string | null
           driver_notes?: string | null
+          emergency_fee_points?: number | null
           estimated_weight_kg?: number | null
           id?: string
+          is_emergency?: boolean
           pickup_address?: string
           pickup_date?: string
           pickup_time?: string
