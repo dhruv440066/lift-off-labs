@@ -51,7 +51,7 @@ export const Header: React.FC<HeaderProps> = ({
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2">
               <img 
-                src="/src/assets/eco-track-logo.jpg" 
+                src="/src/assets/eco-track-logo-new.png" 
                 alt="Eco Track Logo" 
                 className="w-8 h-8 rounded-lg object-cover"
               />

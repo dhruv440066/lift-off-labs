@@ -8,7 +8,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Recycle, Mail, Lock, Eye, EyeOff, User, Phone, Truck, Bird, Cloud } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from '@/hooks/use-toast';
-import ecoTrackLogo from '@/assets/eco-track-logo.jpg';
+import ecoTrackLogo from '@/assets/eco-track-logo-new.png';
 
 export const LoginForm: React.FC = () => {
   const { signIn, signUp } = useAuth();
