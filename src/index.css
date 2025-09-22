@@ -4,26 +4,26 @@
 @tailwind components;
 @tailwind utilities;
 
-/* WasteWise India Design System - Professional waste management theme */
+/* Eco Tracker Design System - Track. Save. Sustain. */
 
 @layer base {
   :root {
-    /* Core WasteWise Color Palette */
-    --primary: 123 38% 49%;        /* #4CAF50 - Primary green */
-    --primary-dark: 116 40% 42%;   /* #45a049 - Darker green */
-    --primary-light: 123 40% 60%;  /* Lighter green */
+    /* Core Eco-Friendly Color Palette */
+    --primary: 142 76% 36%;        /* #22c55e - Fresh forest green */
+    --primary-dark: 142 84% 28%;   /* #16a34a - Deep forest green */
+    --primary-light: 142 69% 58%;  /* #4ade80 - Light nature green */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 207 90% 54%;      /* #2196F3 - Blue */
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 85 84% 65%;       /* #a3e635 - Fresh lime green */
+    --secondary-foreground: 120 15% 15%;
 
-    --accent: 36 100% 50%;         /* #FF9800 - Orange accent */
-    --accent-foreground: 0 0% 100%;
+    --accent: 60 100% 65%;         /* #eab308 - Natural sunlight yellow */
+    --accent-foreground: 120 15% 15%;
 
-    --success: 123 38% 49%;        /* Green success */
-    --warning: 36 100% 50%;        /* Orange warning */
-    --error: 4 90% 58%;           /* #F44336 - Red error */
-    --info: 207 90% 54%;          /* Blue info */
+    --success: 142 76% 36%;        /* Nature green success */
+    --warning: 45 93% 58%;         /* Natural amber warning */
+    --error: 0 84% 60%;           /* Natural coral error */
+    --info: 200 75% 55%;          /* Sky blue info */
 
     /* Neutral colors */
     --background: 0 0% 100%;
@@ -42,17 +42,17 @@
     --input: 0 0% 88%;
     --ring: 123 38% 49%;
 
-    /* WasteWise specific gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(123 38% 49%), hsl(116 40% 42%));
-    --gradient-hero: linear-gradient(135deg, hsl(231 48% 48%), hsl(261 41% 58%));
-    --gradient-eco: linear-gradient(135deg, hsl(123 38% 49%), hsl(90 61% 55%));
-    --gradient-accent: linear-gradient(135deg, hsl(36 100% 50%), hsl(24 100% 45%));
+    /* Eco-friendly nature gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(142 76% 36%), hsl(85 84% 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(142 76% 36%), hsl(120 60% 50%));
+    --gradient-eco: linear-gradient(135deg, hsl(142 76% 36%), hsl(120 70% 45%));
+    --gradient-accent: linear-gradient(135deg, hsl(85 84% 65%), hsl(60 100% 65%));
 
     /* Professional shadows */
     --shadow-soft: 0 2px 4px hsla(0, 0%, 0%, 0.1);
     --shadow-medium: 0 4px 8px hsla(0, 0%, 0%, 0.12);
     --shadow-strong: 0 8px 16px hsla(0, 0%, 0%, 0.15);
-    --shadow-glow: 0 0 40px hsla(123, 38%, 49%, 0.4);
+    --shadow-glow: 0 0 40px hsla(142, 76%, 36%, 0.4);
 
     /* Animation transitions */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -78,7 +78,7 @@
   }
 
   .dark {
-    /* Dark theme for WasteWise */
+    /* Dark theme for Eco Tracker */
     --background: 0 0% 7%;        /* #121212 */
     --foreground: 0 0% 100%;
 
@@ -88,7 +88,7 @@
     --popover: 0 0% 12%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 123 38% 49%;        /* Keep green primary */
+    --primary: 142 76% 45%;        /* Eco green primary for dark */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 0 0% 17%;         /* #2A2A2A */
@@ -97,12 +97,12 @@
     --muted: 0 0% 17%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 36 100% 50%;         /* Keep orange accent */
+    --accent: 85 84% 55%;         /* Nature lime accent for dark */
     --accent-foreground: 0 0% 100%;
 
     --border: 0 0% 20%;           /* #333333 */
     --input: 0 0% 20%;
-    --ring: 123 38% 49%;
+    --ring: 142 76% 45%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -121,7 +121,7 @@
 
   body {
     @apply bg-background text-foreground font-['Inter',_sans-serif] antialiased;
-    background: linear-gradient(135deg, hsl(231 48% 48%), hsl(261 41% 58%));
+    background: linear-gradient(135deg, hsl(142 76% 36%), hsl(120 60% 50%));
     background-attachment: fixed;
     min-height: 100vh;
   }
@@ -143,8 +143,8 @@
   }
 
   @keyframes glow {
-    0%, 100% { box-shadow: 0 0 20px hsla(123, 38%, 49%, 0.3); }
-    50% { box-shadow: 0 0 40px hsla(123, 38%, 49%, 0.6); }
+    0%, 100% { box-shadow: 0 0 20px hsla(142, 76%, 36%, 0.3); }
+    50% { box-shadow: 0 0 40px hsla(142, 76%, 36%, 0.6); }
   }
 
   .animate-pulse { animation: pulse 2s infinite; }

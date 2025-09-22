@@ -50,10 +50,15 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Brand */}
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-gradient-eco rounded-lg flex items-center justify-center">
-                <Recycle className="w-5 h-5 text-white" />
+              <img 
+                src="/src/assets/eco-track-logo.jpg" 
+                alt="Eco Track Logo" 
+                className="w-8 h-8 rounded-lg object-cover"
+              />
+              <div className="flex flex-col">
+                <span className="text-xl font-bold text-foreground">Eco Tracker</span>
+                <span className="text-xs text-muted-foreground font-medium">Track. Save. Sustain.</span>
               </div>
-              <span className="text-xl font-bold text-foreground">WasteWise India</span>
               <Badge variant="secondary" className="text-xs bg-gradient-primary text-white">
                 v2.0
               </Badge>
