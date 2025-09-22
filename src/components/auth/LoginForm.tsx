@@ -175,7 +175,7 @@ export const LoginForm: React.FC = () => {
         <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
           <Recycle className="w-6 h-6 text-white" />
         </div>
-        <span className="text-2xl font-bold text-white">WasteWise</span>
+        <span className="text-2xl font-bold text-white">ECO TRACKER</span>
       </div>
 
       {/* Left Side Content */}
@@ -197,12 +197,12 @@ export const LoginForm: React.FC = () => {
         <Card className="w-96 shadow-2xl bg-white border-0 rounded-2xl">
           <CardHeader className="text-center pb-4">
             <CardTitle className="text-2xl font-bold text-gray-800">
-              {isRegister ? 'Join WasteWise' : 'Welcome Back'}
+              {isRegister ? 'Join ECO TRACKER' : 'Welcome Back'}
             </CardTitle>
             <p className="text-gray-600 text-sm">
               {isRegister 
                 ? 'Create your account to start making a difference'
-                : 'Sign in to your WasteWise dashboard!'
+                : 'Sign in to your ECO TRACKER dashboard!'
               }
             </p>
           </CardHeader>
