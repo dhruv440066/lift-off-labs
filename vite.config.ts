@@ -10,8 +10,8 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   preview: {
-    // Corrected the host to allow the 'onrender.com' domain
-    allowedHosts: ["waste-management-1-nz-ug.onrender.com"],
+    // Setting allowedHosts to `true` allows any host to access the preview server.
+    allowedHosts: true,
   },
   plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
@@ -20,3 +20,4 @@ export default defineConfig(({ mode }) => ({
     },
   },
 }));
+
